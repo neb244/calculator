@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="https://kit.fontawesome.com/8ed460a316.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+    .calculator {
+      width: 300px;
+      margin: 50px auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    .display {
+      width: calc(100% - 60px);
+      float: left;
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 20px;
+      text-align: left;
+    }
+    button {
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      font-size: 18px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      outline: none;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: lightblue;
+    }
+    .clear-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 40px;
+      color: rgb(44, 66, 85);
+      margin-bottom: 20px;
+    }
+    .title {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .btn-1:hover {
+      background-color: lightgreen;
+    }
+    .btn-2:hover {
+      background-color: lightcoral;
+    }
+    .btn-3:hover {
+      background-color: lightskyblue;
+    }
+    .btn-4:hover {
+      background-color: lightgoldenrodyellow;
+    }
+    .btn-5:hover {
+      background-color: rgb(168, 168, 27);
+    }
+    .btn-6:hover {
+      background-color: rgb(210, 225, 250)
+    }
+    .btn-7:hover {
+      background-color: rgb(35, 52, 129);
+    }
+    .btn-8:hover {
+      background-color: rgb(77, 43, 69);
+    }
+    .btn-9:hover {
+      background-color: lightgreen;
+    }
+    .btn-10:hover {
+      background-color: lightcoral;
+    }
+    .btn-11:hover {
+      background-color: rgb(71, 85, 94);
+    }
+    .btn-12:hover {
+      background-color: rgb(233, 146, 25)
+    }
+    .btn-13:hover {
+      background-color: lightgoldenrodyellow;
+    }
+    .btn-14:hover {
+      background-color: rgb(67, 88, 163)
+    }
+    .btn-15:hover {
+      background-color: rgb(143, 146, 156)
+    }
+    .btn-16:hover {
+      background-color: rgb(113, 113, 56);
+    }
+    @media screen and (max-width: 480px) {
+
+      .calculator {
+        width: 90%;
+        margin: 20px auto;
+        padding: 10px;
+        text-align: center; /* Centrer horizontalement */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centrer verticalement */
+        align-items: center; /* Centrer horizontalement */
+      }
+
+      .display {
+        font-size: 18px;
+      }
+
+      button {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+        margin: 3px;
+      }
+
+      .clear-button {
+        top: 10px;
+        right: 10px;
+        font-size: 14px;
+        width: 30px;
+        height: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="title">Calculator</div>
+    <div class="display" id="display">0</div>
+    <div>
+      <button class="btn-1" onclick="appendValue('7')">7</button>
+      <button class="btn-2" onclick="appendValue('8')">8</button>
+      <button class="btn-3" onclick="appendValue('9')">9</button>
+      <button class="btn-4" onclick="appendValue('*')">*</button>
+    </div>
+    <div>
+        <button class="btn-5" onclick="appendValue('4')">4</button>
+        <button class="btn-6" onclick="appendValue('5')">5</button>
+        <button class="btn-7" onclick="appendValue('6')">6</button>
+        <button class="btn-8" onclick="appendValue('/')">/</button>  
+    <div>
+        <button class="btn-9" onclick="appendValue('1')">1</button>
+        <button class="btn-10" onclick="appendValue('2')">2</button>
+        <button class="btn-11" onclick="appendValue('3')">3</button>
+        <button class="btn-12" onclick="appendValue('-')">-</button> 
+    <div>
+        <button class="btn-13" onclick="appendValue('0')">1</button>
+        <button class="btn-14" onclick="appendValue('.')">2</button>
+        <button class="btn-15" onclick="calculate()">=</button>
+        <button class="btn-16" onclick="appendValue('+')">+</button>  
+  </div>
+  
+  <button class="clear-button" onclick="clearDisplay()"><i class="fa-solid fa-rotate-right"></i></button>
+
+  <script>
+    let displayValue = '';
+
+    function updateDisplay() {
+      document.getElementById('display').innerText = displayValue;
+    }
+
+    function appendValue(val) {
+      displayValue += val;
+      updateDisplay();
+    }
+
+    function clearDisplay() {
+      displayValue = '';
+      updateDisplay();
+    }
+
+    function calculate() {
+      try {
+        const result = eval(displayValue);
+        displayValue = result.toString();
+        updateDisplay();
+      } catch (error) {
+        displayValue = 'Error';
+        updateDisplay();
+      }
+    }
+  </script>
+</body>
+</html>
